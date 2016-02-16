@@ -128,6 +128,10 @@ enum EBlockChipsets {
 	WS2811_PORTDC,
 	WS2811_400_PORTDC,
 #endif
+#ifdef ESP
+	WS2811_ESP,
+	WS2811_400_ESP,
+#endif
 };
 
 #if defined(LIB8_ATTINY)
@@ -391,6 +395,11 @@ public:
 				case WS2811_PORTDC: return addLeds(new SixteenWayInlineBlockClocklessController<NUM_LANES,NS(320), NS(320), NS(640), RGB_ORDER>(), data, nLedsOrOffset, nLedsIfOffset);
 				case WS2811_400_PORTDC: return addLeds(new SixteenWayInlineBlockClocklessController<NUM_LANES,NS(800), NS(800), NS(900), RGB_ORDER>(), data, nLedsOrOffset, nLedsIfOffset);
 		#endif
+		#ifdef ESP6288
+				case WS2811_ESP: return addLeds(new InlineBlockClocklessController<NUM_LANES,NS(320), NS(320), NS(640), RGB_ORDER>(), data, nLedsOrOffset, nLedsIfOffset);
+				case WS2811_400_ESP: return addLeds(new InlineBlockClocklessController<NUM_LANES,NS(800), NS(800), NS(900), RGB_ORDER>(), data, nLedsOrOffset, nLedsIfOffset);
+		#endif
+
 		}
 	}
 
